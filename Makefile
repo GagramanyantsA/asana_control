@@ -18,7 +18,13 @@ recreate_db:
 	make create_db
 
 migrate_db:
-	python3 manage.py migrate
+	python manage.py migrate
+
+migrations_db:
+	python manage.py makemigrations
+
+super_user_db:
+	python manage.py createsuperuser
 
 recreate_db_with_migrations:
 	make recreate_db
