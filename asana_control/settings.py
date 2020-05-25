@@ -17,6 +17,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'django_commander',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -102,4 +103,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-ASANA_TOKEN = '1/1177270949658354:a0e7477db57cb9cb764045bbda678fe8'
+ASANA_TOKEN = '1/1177270949658354:a0e7477db57cb9cb764045bbda678fe8'  # just do not forget
