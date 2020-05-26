@@ -10,11 +10,18 @@ After downloading:
 
 - (CMD: migrate_db) Apply migrations to DB
 
-2. Building and Running Docker with Django through Makefile
+2. Create super user
+
+- python manage.py createsuperuser
+
+3. Building and Running Docker with Django through Makefile
 
 - (CMD: build) Setting environment and building Django with gunicorn
 
-3. Run Django
+4. Run Django
 
-- docker-compose up asana
+- docker-compose up asana (OR docker-compose up -d)
+
+Note: To pass your ASANA TOKEN you can specify it in prod_settings.py file or 
+      specify it in docker-compose through passing your settings file in DJANGO_SETTINGS_MODULE.
 
