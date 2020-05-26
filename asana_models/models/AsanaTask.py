@@ -5,7 +5,7 @@ class AsanaTask(models.Model):
     """
     Asana Task model
     """
-    id = models.AutoField(primary_key=True)
+    id = models.CharField(primary_key=True, unique=True, max_length=20)
     project = models.ForeignKey('asana_models.AsanaProject', models.DO_NOTHING)
     description = models.CharField(max_length=500)
     user = models.ForeignKey('asana_models.AsanaUser', models.DO_NOTHING)

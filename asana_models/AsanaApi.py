@@ -47,3 +47,35 @@ class AsanaApi:
             return None, result['errors']
 
         return result['gid'], ''
+
+    def create_task(self, project_id: str, task_description: str, user_id: str):
+        try:
+            result = self._asana_client.tasks.create({
+                'name': task_description,
+                'assignee': user_id,
+                'projects': [project_id, ],
+                'workspace': self._target_workspace_id
+            })
+        except Exception as ex:
+            return None, f'Error while creating task: {str(ex)}'
+
+        if 'errors' in result:
+            return None, result['errors']
+
+        return result['gid'], ''
+
+    def update_task(self, task_id: str, project_id: str, task_description: str, user_id: str):
+        try:
+            result = self._asana_client.tasks.update(task_id, {
+                'name': task_description,
+                'assignee': user_id,
+                'projects': [project_id, ],
+                'workspace': self._target_workspace_id
+            })
+        except Exception as ex:
+            return f'Error while updating {task_id} task: {str(ex)}'
+
+        if 'errors' in result:
+            return result['errors']
+
+        return ''
