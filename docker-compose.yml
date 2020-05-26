@@ -8,6 +8,8 @@ services:
     build:
       context: .
       dockerfile: asana_control/Dockerfile
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.prod_settings
     restart: always
     network_mode: "host"
     volumes:

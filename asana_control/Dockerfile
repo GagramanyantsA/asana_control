@@ -13,6 +13,5 @@ RUN pip3 install --no-cache-dir psycopg2-binary==2.8.5 requests==2.23.0 asana==0
 
 COPY asana_models asana_models
 COPY asana_control asana_control
-COPY django_commander django_commander
 COPY static static
 COPY manage.py ./

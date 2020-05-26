@@ -35,13 +35,15 @@ recreate_db_with_migrations:
 # DEPLOY
 
 DOCKER_CONTAINERS_DIR=/var/docker_containers/
-ASANA_CONF_DIR=$(DOCKER_CONTAINERS_DIR)asana_control/config/
+ASANA_DIR=$(DOCKER_CONTAINERS_DIR)asana_control/
+ASANA_CONF_DIR=$(ASANA_DIR)config/
 
 set_env:
 	sudo rm -r $(DOCKER_CONTAINERS_DIR) || true
-	sudo mkdir -p $(DOCKER_CONTAINERS_DIR)
-	sudo mkdir -p $(ASANA_CONF_DIR)
+	sudo mkdir -p $(DOCKER_CONTAINERS_DIR) $(ASANA_DIR) $(ASANA_CONF_DIR)
 	sudo cp ./config/gunicorn_conf.py $(ASANA_CONF_DIR)
+	sudo cp ./config/prod_settings.py $(ASANA_CONF_DIR)
+
 
 build_docker:
 	docker-compose build asana
@@ -49,12 +51,6 @@ build_docker:
 build:
 	make set_env
 	make build_docker
-
-up:
-	docker-compose up
-
-down:
-	docker-compose down
 
 docker_none_clear:
 	sudo docker rmi $$(docker images --filter "dangling=true" -q --no-trunc)
