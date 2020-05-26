@@ -64,12 +64,11 @@ class AsanaApi:
 
         return result['gid'], ''
 
-    def update_task(self, task_id: str, project_id: str, task_description: str, user_id: str):
+    def update_task(self, task_id: str, task_description: str, user_id: str):
         try:
             result = self._asana_client.tasks.update(task_id, {
                 'name': task_description,
                 'assignee': user_id,
-                'projects': [project_id, ],
                 'workspace': self._target_workspace_id
             })
         except Exception as ex:
