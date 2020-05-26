@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+
+  asana:
+    image: asana_img
+    container_name: asana_con
+    build:
+      context: .
+      dockerfile: asana_control/Dockerfile
+    restart: always
+    network_mode: "host"
+    volumes:
+      - /var/docker_containers/asana_control/config/:/opt/asana_control/config
+    entrypoint:
+      gunicorn -c ./config/gunicorn_conf.py asana_control.wsgi
